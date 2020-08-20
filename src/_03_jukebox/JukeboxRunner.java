@@ -8,6 +8,8 @@ import javax.swing.SwingUtilities;
 
 public class JukeboxRunner {
 	public static void main(String[] args) {
+		new Jukebox().run();
 		SwingUtilities.invokeLater(new Jukebox());
+		
 	}
 }

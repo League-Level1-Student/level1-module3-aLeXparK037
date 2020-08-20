@@ -5,22 +5,31 @@ package _03_jukebox;
  */
 
 
+import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
+import javax.swing.JPanel;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, MouseListener {
+	JButton one = new JButton();
+	JButton two = new JButton();
+	JButton three = new JButton();
 
     public void run() {
 
@@ -36,6 +45,39 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	JFrame frame = new JFrame();
+    	frame.setVisible(true);
+    	JPanel panel = new JPanel();
+    	frame.add(panel);
+    	
+    	panel.add(one);
+    	try {
+			panel.add(createImage("https://i.pinimg.com/736x/ee/f0/36/eef036f583e91a438896a377716ea85e.jpg"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	panel.add(two);
+    	try {
+			panel.add(createImage("https://nolala-oa4sxzzoh99xwp.netdna-ssl.com/wp-content/uploads/2018/12/on-repeat-high-hopes-lyrics-panic-at-the-disco.jpg"));
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    
+    	panel.add(three);
+    	try {
+			panel.add(createImage("https://i1.sndcdn.com/artworks-000252594680-6n15rs-t500x500.jpg"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	one.addMouseListener(this);
+    	
+    	
+    	frame.pack();
     }
     
     
@@ -45,6 +87,63 @@ public class Jukebox implements Runnable {
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
 	}
+	private Component createImage(String imageUrl) throws MalformedURLException {
+		URL url = new URL(imageUrl);
+		Icon icon = new ImageIcon(url);
+		JLabel imageLabel = new JLabel(icon);
+		return imageLabel;
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == one) {
+			
+			Song ones = new Song("Happy Birthday song.mp3");
+			ones.play();
+		}
+		if (e.getSource() == two) {
+			Song twos = new Song("Panic! AT the Disco - High Hopes (Lyrcs.mp3");
+			twos.play();
+		}
+		if (e.getSource() == three ) {
+			Song threes = new Song("Radioactive-Imagine Dragons (Lyrics).mp3");
+			threes.play();
+		}
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 }
 
