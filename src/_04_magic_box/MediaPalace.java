@@ -34,7 +34,7 @@ public class MediaPalace {
 	public JLabel loadImageFromWithinProject(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
-		return new JLabel(icon);
+		return new JLabel(icon);	
 	}
 
 	/*
@@ -49,24 +49,24 @@ public class MediaPalace {
 	 * To use this method, you must first have the javazoom jar inthe project.
 	 * If this jar has not been added, you can download from: http://www.javazoom.net/javalayer/javalayer.html
 	 * Uncomment this method.
-	 */
-	// private void playMp3FromComputer(String fileName) throws JavaLayerException {
-	// FileInputStream songStream = new FileInputStream(fileName);
-	//
-	// final Player playMp3 = new Player(songStream);
-	//
-	// Thread t = new Thread() {
-	// public void run() {
-	// try {
-	// playMp3.play();
-	// } catch (JavaLayerException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
-	// };
-	// t.start();
-	// }
+	 * */
+	/*
+	 private void playMp3FromComputer(String fileName) throws JavaLayerException {
+	 FileInputStream songStream = new FileInputStream(fileName);
+	 final Player playMp3 = new Player(songStream);
+	
+	 Thread t = new Thread() {
+	 public void run() {
+	 try {
+	 playMp3.play();
+	 } catch (JavaLayerException e) {
+	  TODO Auto-generated catch block
+	 e.printStackTrace();
+	 }
+	 }
+	 };
+	 t.start();
+	 }
 
 	/* This method will use your default mp3 player to play the song */
 	public void playMusicOnComputer(String fileName) {

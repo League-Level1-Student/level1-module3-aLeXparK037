@@ -12,9 +12,13 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -50,6 +54,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	private void createUI() {
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
+		frame.addMouseListener(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,13 +78,25 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		int x = e.getX();
+		int y = e.getY();
+		int color = backgroundImage.getRGB(x, y);
+		System.out.println(color);
 		
+		if (color == -4804468) {
+			speak("Secret Tunnel, SECRET TUNNEL");
+			
+		}
+		if (color == -1) {
+			loadImageFromWithinProject("fuji.jpg");
+		}
+	
 	}
 
 	@Override
@@ -99,7 +116,29 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-
+static void speak(String words) {
+		
+		if (System.getProperty("os.name").contains("Windows")) {
+			String cmd = "PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('"
+					+ words + "');\"";
+			try {
+				Runtime.getRuntime().exec(cmd).waitFor();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				Runtime.getRuntime().exec("say " + words).waitFor();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+public JLabel loadImageFromWithinProject(String fileName) {
+	URL imageURL = getClass().getResource(fileName);
+	Icon icon = new ImageIcon(imageURL);
+	return new JLabel(icon);	
+}
 }
 
 
