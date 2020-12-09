@@ -4,7 +4,8 @@ public class CowTimerRunner {
 	public static void main(String[] args) throws InterruptedException {
 		/* Make a CowTimer, set its time and start it.
 		 * Use a short delay (seconds) when testing, then try with longer delays */
-		CowTimer time = new CowTimer(5);
+		CowTimer time = new CowTimer(0);
+		time.setTime(7);
 		time.start();
 		
 
