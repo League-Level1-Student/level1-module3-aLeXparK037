@@ -15,7 +15,7 @@ public class CowTimer {
 	 * variable
 	 */
 	public CowTimer(int seconds) {
-		setTime(5);
+		
 	}
 
 	/* 4. Complete the main method of the CowTimerRunner class */
